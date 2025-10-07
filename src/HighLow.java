@@ -1,15 +1,48 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+import java.util.Random;
+import java.util.Scanner;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+public class HighLow
+{
+    public static void main(String[] args)
+    {
+        Scanner in = new Scanner(System.in);
+        Random rand = new Random();
+        int targetNum = 0;
+        int guessNum = 0;
+
+        targetNum = rand.nextInt(10) + 1;
+        boolean done = false;
+        String trash = " ";
+
+        do
+        {
+            System.out.print("Enter a guess 1-10: ");
+            if (in.hasNextInt())
+            {
+                guessNum = in.nextInt();
+                in.nextLine();
+
+                if (guessNum < 1 || guessNum > 10)
+                {
+                    System.out.println("Your number is outside of the range");
+                } else if (guessNum < targetNum)
+                {
+                    System.out.println("Too low. Target is " + targetNum);
+                } else if (guessNum > targetNum)
+                {
+                    System.out.println("Too high. Target is " + targetNum);
+                } else
+                {
+                    System.out.println("Congrats you got it correct, you guessed " + targetNum + " correctly");
+                    done = true;
+                }
+            }
+            else
+            {
+                trash =  in.nextLine();
+                System.out.println("Enter a valid input");
+            }
+        }while(!done);
     }
+
 }
